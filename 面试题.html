@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 50px solid black;
+            padding: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        //     //第一题
+        // //with
+        // var a=parseInt(getComputedStyle(document.getElementsByClassName('box')[0]).width);
+        // console.log(a);
+        // //border
+        // var bl=parseInt(getComputedStyle(document.getElementsByClassName('box')[0]).borderLeft);
+        // var br=parseInt(getComputedStyle(document.getElementsByClassName('box')[0]).borderRight);
+        // console.log(bl,br);
+        // //padding
+        // var pl=parseInt(getComputedStyle(document.getElementsByClassName('box')[0]).paddingLeft);
+        // var pr=parseInt(getComputedStyle(document.getElementsByClassName('box')[0]).paddingRight);
+        // console.log(pl,pr);
+        // var outerWidth=a+bl+br+pl+pr;
+        // console.log(outerWidth);
+        // //offsetWidth
+        // console.log('offsetwidth',document.getElementsByClassName('box')[0].offsetWidth)
+        // // ---------------------------------------------------------------------
+        // // 第二题
+        // // 获取cookies
+        // getcookies({
+        //     time:new Date('2019-10-30 10:10:10').toUTCString(),
+        //     name:'city',
+        //     value:'广州',
+        // })
+        // function getcookies(o){
+        //     var time = o.time;
+        //     // console.log(time);
+        //     document.cookie=o.name+'='+o.value+';expires='+time+';'
+        //     var cookie=document.cookie;
+        //     console.log(cookie);
+        //     var cookieDATA=cookie.split(/;\s*/);
+        //     // console.log(cookieDATA);
+        //     var cookies={};
+        //     for (var index = 0; index < cookieDATA.length; index++) {
+        //         cookies[cookieDATA[index].split('=')[0]]=cookieDATA[index].split('=')[1]
+
+        //     }
+        //     console.log(cookies)
+        // }
+        // // deletecookie();
+        // function deletecookie(){
+        //     var t=new Date('1980-10-30 10:10:10').toUTCString()
+        //     console.log(t)
+        //     var cookie=document.cookie;
+        //     var cookieDATA=cookie.split(/;\s*/);
+        //     console.log(cookieDATA)
+        //     for (var  index = 0; index < cookieDATA.length; index++) {
+        //         document.cookie=cookieDATA[index]+';expires='+t+';';
+        //     }
+
+        // }
+
+//构造方法 CustomerEvent() 创建一个新的 CustomEvent 对象
+        var myEvent = new CustomEvent('event_name', {
+            detail: {
+                title: 'This is title!'
+            },
+        });
+        //addEventListener() 方法用于向指定元素添加事件句柄。
+        window.addEventListener('event_name', function (event) {
+            console.log('得到标题为：', event.detail);
+        });
+        // 随后在对应的元素上触发该事件
+        console.log(window.dispatchEvent);
+        // if (window.dispatchEvent) {
+            //dispatchEvent()就是触发执行了，dom.dispatchEvent(eventObject)
+// 参数eventObject表示事件对象，是createEvent()方法返回的创建的Event对象。
+            window.dispatchEvent(myEvent);
+        // } else {
+        //     window.fireEvent(myEvent);
+        // }
+
+        var newevent=new CustomEvent('new_event',{
+            detail:{
+                new:'HelloWorld!',
+            },
+        })
+        window.addEventListener('new_event',function(event){
+                console.log(event.detail.new);
+        })
+        window.dispatchEvent(newevent)
+        var band=new CustomEvent('event_band',{
+            detail:'myname',
+        })
+        document.addEventListener('event_band',function(event){
+                console.log(event.detail);
+        })
+      
+           document.dispatchEvent(band);//触发事件
+       
+
+        // 根据listener中的callback函数定义，应当会在console中输出 "得到标题为： This is title!"
+    </script>
+</body>
+
+</html>
